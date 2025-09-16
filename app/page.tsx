@@ -1,103 +1,207 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, LineChart, Microscope, Cpu, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
+
+export default function Landing() {
+  const [submitted, setSubmitted] = useState(false);
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-white text-slate-900">
+      {/* Nav */}
+      <header className="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-slate-200">
+        <nav className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-2xl bg-slate-900" />
+            <span className="font-semibold">395 Intelligence</span>
+          </div>
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#services" className="hover:opacity-80">Services</a>
+            <a href="#process" className="hover:opacity-80">Process</a>
+            <a href="#about" className="hover:opacity-80">About</a>
+            <a href="#contact" className="hover:opacity-80">Contact</a>
+          </div>
+        </nav>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero */}
+      <section className="mx-auto max-w-6xl px-6 pt-16 pb-10">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              From Unmet Need to Product Strategy
+            </h1>
+            <p className="mt-4 text-slate-600 text-lg">
+              We identify unmet clinical needs, build defensible business cases, and create product requirements—while helping organizations harness AI to consolidate knowledge into actionable strategies.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 text-white px-5 py-3 text-sm font-medium shadow">
+                Request a discovery call <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#services" className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 px-5 py-3 text-sm font-medium">
+                Explore services
+              </a>
+            </div>
+            <div className="mt-6 flex items-center gap-6 text-xs text-slate-500">
+              <span className="inline-flex items-center gap-1"><ShieldCheck className="h-4 w-4"/> HIPAA-aware workflows</span>
+              <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-4 w-4"/> MDR, IVDR, FDA-savvy</span>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <div className="grid grid-cols-2 gap-4">
+                <Card icon={<Microscope />} title="Unmet Needs" items={["Clinical workflow observation","Stakeholder interviews","Gap analysis","Ethnographic research"]} />
+                <Card icon={<LineChart />} title="Business Cases" items={["Market sizing & segmentation","Adoption models","Health economics","Competitive landscaping"]} />
+                <Card icon={<Cpu />} title="AI Knowledge Systems" items={["Consolidate SharePoint & archives","Copilot + agent workflows","Claims library management","Launch plan reuse"]} />
+                <Card icon={<ShieldCheck />} title="Compliance" items={["PHI minimization","Governed AI use","Regulatory alignment","Secure knowledge hubs"]} />
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      {/* Logos / Social proof placeholder */}
+      <section className="mx-auto max-w-6xl px-6 py-8">
+        <p className="text-center text-sm text-slate-500">Trusted by teams building monitoring, perioperative, and critical care solutions.</p>
+      </section>
+
+      {/* Services */}
+      <section id="services" className="mx-auto max-w-6xl px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-semibold">What we do</h2>
+        <div className="mt-8 grid md:grid-cols-3 gap-6">
+          <Service
+            title="Identify Unmet Clinical Needs"
+            blurb="We uncover pain points at the bedside through direct observation, interviews, and workflow mapping."
+            bullets={["ICU, OR, ED, and PACU ethnography","Voice of clinician and patient","Clinical workflow analysis","Gap identification"]}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <Service
+            title="Build Business Cases"
+            blurb="Our research produces credible, defendable business cases that drive portfolio and investment decisions."
+            bullets={["Market sizing (TAM/SAM/SOM)","Health economics & reimbursement pathways","Competitive and adoption modeling","Executive-ready valuation decks"]}
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <Service
+            title="Define Product Requirements"
+            blurb="We translate needs into MRDs and PRDs, complete with claims libraries and KOL validation."
+            bullets={["Draft MRD/PRD inputs","Claims and value prop crafting","KOL feedback loops","Launch story alignment"]}
           />
-          Go to nextjs.org →
-        </a>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section id="process" className="mx-auto max-w-6xl px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-semibold">How we work</h2>
+        <ol className="mt-8 grid md:grid-cols-4 gap-6">
+          {[
+            { step: "01", title: "Discover", text: "Identify clinical unmet needs through observation and interviews." },
+            { step: "02", title: "Quantify", text: "Validate needs with data, market sizing, and economics." },
+            { step: "03", title: "Define", text: "Translate insights into requirements, claims, and business cases." },
+            { step: "04", title: "Enable", text: "Build AI-enabled knowledge systems that consolidate insights into usable launch playbooks." },
+          ].map((s) => (
+            <li key={s.step} className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div className="text-xs text-slate-500">{s.step}</div>
+              <div className="mt-1 font-semibold">{s.title}</div>
+              <div className="mt-2 text-sm text-slate-600">{s.text}</div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* About */}
+      <section id="about" className="mx-auto max-w-6xl px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-semibold">Why us</h2>
+        <div className="mt-6 grid md:grid-cols-2 gap-6">
+          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
+            <h3 className="font-semibold">Medtech-native</h3>
+            <p className="mt-2 text-sm text-slate-600">We’ve built upstream strategies for monitoring, perioperative, and critical care. We connect bedside reality with boardroom strategy.</p>
+            <ul className="mt-4 text-sm text-slate-700 space-y-2 list-disc pl-5">
+              <li>Deep experience in ICU/OR workflows</li>
+              <li>Evidence, economics, and regulatory awareness</li>
+              <li>Portfolio and launch strategy expertise</li>
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
+            <h3 className="font-semibold">Practical AI Integration</h3>
+            <p className="mt-2 text-sm text-slate-600">We help organizations use their existing tools—like SharePoint and Copilot—augmented by agents to consolidate prior research and enable repeatable success.</p>
+            <ul className="mt-4 text-sm text-slate-700 space-y-2 list-disc pl-5">
+              <li>Centralized knowledge hubs from existing assets</li>
+              <li>Governed agent workflows to surface insights</li>
+              <li>Claims libraries and launch plans linked to past work</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="mx-auto max-w-6xl px-6 py-12">
+        <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h2 className="text-2xl md:text-3xl font-semibold">Let’s talk</h2>
+          <p className="mt-2 text-slate-600 text-sm">Tell us about your product, timelines, and goals. We’ll share a short proposal or a working session agenda.</p>
+          {submitted ? (
+            <div className="mt-6 rounded-xl bg-green-50 border border-green-200 p-4 text-sm">Thanks! We’ll be in touch shortly.</div>
+          ) : (
+            <form
+              className="mt-6 grid md:grid-cols-2 gap-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSubmitted(true);
+              }}
+            >
+              <input required placeholder="Name" className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm" />
+              <input required placeholder="Work email" type="email" className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm" />
+              <input placeholder="Company" className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm md:col-span-2" />
+              <textarea placeholder="Briefly describe your needs" className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm md:col-span-2 min-h-[120px]"/>
+              <button className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 text-white px-5 py-3 text-sm font-medium shadow md:col-span-2">
+                Send inquiry <ArrowRight className="h-4 w-4" />
+              </button>
+              <div className="text-xs text-slate-500 md:col-span-2 flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4"/> We’ll never train models on your data. NDAs on request.
+              </div>
+            </form>
+          )}
+          <div className="mt-6 flex flex-wrap gap-6 text-sm text-slate-700">
+            <a href="mailto:hello@395intelligence.com" className="inline-flex items-center gap-2"><Mail className="h-4 w-4"/> hello@395intelligence.com</a>
+            <a href="tel:+1-949-000-0000" className="inline-flex items-center gap-2"><Phone className="h-4 w-4"/> +1 (949) 000-0000</a>
+          </div>
+        </div>
+      </section>
+
+      <footer className="mx-auto max-w-6xl px-6 py-10 text-xs text-slate-500">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>© {new Date().getFullYear()} 395 Intelligence. All rights reserved.</div>
+          <div className="flex items-center gap-4">
+            <a className="hover:underline" href="#">Privacy</a>
+            <a className="hover:underline" href="#">Terms</a>
+            <a className="hover:underline" href="#">Responsible AI</a>
+          </div>
+        </div>
       </footer>
+    </div>
+  );
+}
+
+function Service({ title, blurb, bullets }: { title: string; blurb: string; bullets: string[] }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
+      <h3 className="font-semibold">{title}</h3>
+      <p className="mt-2 text-sm text-slate-600">{blurb}</p>
+      <ul className="mt-4 text-sm text-slate-700 space-y-2 list-disc pl-5">
+        {bullets.map((b) => (<li key={b}>{b}</li>))}
+      </ul>
+    </div>
+  );
+}
+
+function Card({ icon, title, items }: { icon: React.ReactNode; title: string; items: string[] }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 p-4">
+      <div className="flex items-center gap-2">
+        <div className="h-8 w-8 rounded-xl border border-slate-200 flex items-center justify-center">{icon}</div>
+        <div className="font-semibold text-sm">{title}</div>
+      </div>
+      <ul className="mt-3 text-xs text-slate-600 space-y-1 list-disc pl-5">
+        {items.map((i) => (<li key={i}>{i}</li>))}
+      </ul>
     </div>
   );
 }
